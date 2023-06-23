@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using UrlShortener.Models;
@@ -29,5 +30,20 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Short}/{action=Index}/{id?}");
+
+
+//fallback to redirect from shortUrl to Original
+app.MapFallback(async (LinksDbContext url, HttpContext context) =>
+{
+    var path = context.Request.Path.ToUriComponent().Trim('/');
+    var match = await url.Links.FirstOrDefaultAsync(x=>x.ShortUrl==path);
+
+    if (match == null)
+    {
+        return Results.BadRequest("Invalid Url");
+    }
+
+    return Results.Redirect(match.LongUrl);
+});
 
 app.Run();

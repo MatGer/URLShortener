@@ -43,9 +43,9 @@ namespace UrlShortener.Controllers
             var rand = new Random();
             Links obj= new Links();
             const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-            string randomString = new string(Enumerable.Repeat(chars, 10).Select(s => s[rand.Next(s.Length)]).ToArray());   //link length = 10 characters
+            string randomString = new string(Enumerable.Repeat(chars, 8).Select(s => s[rand.Next(s.Length)]).ToArray());   //link length = 8 characters
             obj.LongUrl = link.LongUrl;
-            obj.ShortUrl = "https://shortlink.com/" + randomString;
+            obj.ShortUrl = randomString;
             _linksDbContext.Links.Add(obj);
             _linksDbContext.SaveChanges();
             ViewBag.link = obj;
