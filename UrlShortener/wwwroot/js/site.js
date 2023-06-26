@@ -1,4 +1,8 @@
-﻿// Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
-
-// Write your JavaScript code.
+﻿
+function myFunction() {
+    var copyText = document.getElementById("getLink").textContent;
+    navigator.clipboard.writeText(copyText);
+    document.getElementById("copyButton").classList.remove("btn-warning");
+    document.getElementById("copyButton").classList.add("btn-success");
+    document.getElementById("copyButton").innerHTML="Copied! <i class='bi bi-scissors'></i>";
+}

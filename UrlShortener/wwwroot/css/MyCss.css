@@ -1,0 +1,39 @@
+﻿body {
+    background-color: #4287f5;
+}
+
+#input {
+    margin-top: 30%;
+    text-align: center;
+}
+
+#button {
+    width: 20%;
+    margin-top: 3%;
+    margin-left: 40%;
+}
+
+p {
+    display: inline-block;
+    color: white;
+    font-size: x-large;
+    margin-top: 1%;
+}
+
+#copyButton {
+    display: inline-block;
+    width: 10%
+}
+
+#show {
+    text-align: center;
+    margin: auto;
+}
+
+h1 {
+    width: 30%;
+    margin-left: 35%;
+    margin-top: 10%;
+    color: white;
+    text-align: center;
+}
