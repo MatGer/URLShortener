@@ -5,4 +5,10 @@
         <input asp-for="LongUrl" id="url"/>
         <button type="submit">Create link</button>
     </form>
+    @{
+        if (TempData["NewLink"] != null)
+        {
+            <p>@TempData["NewLink"]</p>
+        }
+    }
 </div>
