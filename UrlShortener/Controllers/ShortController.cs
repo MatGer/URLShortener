@@ -26,7 +26,6 @@ namespace UrlShortener.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Shortener(Links link)
         {
-            var a = Request.GetDisplayUrl();
             var links = _linksDbContext.Links.Where(x=>x.LongUrl==link.LongUrl).FirstOrDefault();
             if (links!=null){
                 TempData["NewLink"] = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/{links.ShortUrl}";
@@ -35,7 +34,7 @@ namespace UrlShortener.Controllers
             var rand = new Random();
             Links obj= new Links();
             const string chars = "abcdefghijklmnopqrstuvwxyz0123456789";
-            string randomString = new string(Enumerable.Repeat(chars, 5).Select(s => s[rand.Next(s.Length)]).ToArray());   //link length = 8 characters
+            string randomString = new string(Enumerable.Repeat(chars, 5).Select(s => s[rand.Next(s.Length)]).ToArray());   //link length = 5 characters
             obj.LongUrl = link.LongUrl;
             obj.ShortUrl = randomString;
             _linksDbContext.Links.Add(obj);

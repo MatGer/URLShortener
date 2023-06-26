@@ -1,14 +1,28 @@
 ﻿@model UrlShortener.Models.Links
 
-<div class="text-center">
+<div class="form-group">
+    <h1>Url Shortener</h1>
     <form method="post" asp-action="Shortener">
-        <input asp-for="LongUrl" id="url"/>
-        <button type="submit">Create link</button>
+        <input asp-for="LongUrl" id="input" class="form-control glow-on-hover" placeholder="Enter a link to shorten it..." autocomplete="off" />
+        <button type="submit" id="button" class="btn btn-warning btn-lg btn-block">Create link &nbsp;<i class="bi bi-link-45deg"></i></button>
     </form>
     @{
         if (TempData["NewLink"] != null)
         {
-            <p>@TempData["NewLink"]</p>
+            <div id="show">
+                <p id="getLink">@TempData["NewLink"] &nbsp;&nbsp;&nbsp;</p>
+                <button onclick="myFunction()" id="copyButton" class="btn btn-warning">Copy <i class="bi bi-scissors"></i></button>
+            </div>
+            
         }
     }
+    <script>
+        function myFunction() {
+            var copyText = document.getElementById("getLink").textContent;
+            navigator.clipboard.writeText(copyText);
+            document.getElementById("copyButton").classList.remove("btn-warning");
+            document.getElementById("copyButton").classList.add("btn-success");
+            document.getElementById("copyButton").innerHTML="Copied! <i class='bi bi-scissors'></i>";
+        }
+    </script>
 </div>
