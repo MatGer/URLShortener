@@ -26,6 +26,16 @@ namespace UrlShortener.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Shortener(Links link)
         {
+            if (link.LongUrl is null)
+            {
+                TempData["NewLink"]="Please paste a link...";
+                return RedirectToAction("Index", "Short");
+            }
+            if (link.LongUrl.Contains("drop") || link.LongUrl.Contains("select") || link.LongUrl.Contains("update") || !link.LongUrl.Contains("://"))
+            {
+                TempData["NewLink"] = "This is not a link!";
+                return RedirectToAction("Index", "Short");
+            }
             var links = _linksDbContext.Links.Where(x=>x.LongUrl==link.LongUrl).FirstOrDefault();
             if (links!=null){
                 TempData["NewLink"] = $"{HttpContext.Request.Scheme}://{HttpContext.Request.Host}/{links.ShortUrl}";
