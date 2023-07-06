@@ -2,8 +2,14 @@
     background-color: #4287f5;
 }
 
-#input {
-    margin-top: 30%;
+#input1 {
+    margin: auto;
+    width: 70%;
+    text-align: center;
+}
+#input2 {
+    width: 30%;
+    margin:auto;
     text-align: center;
 }
 

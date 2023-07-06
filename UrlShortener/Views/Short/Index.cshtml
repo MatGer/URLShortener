@@ -3,17 +3,17 @@
 <div class="form-group">
     <h1>Url Shortener</h1>
     <form method="post" asp-action="Shortener">
-        <input asp-for="LongUrl" id="input" class="form-control glow-on-hover" placeholder="Enter a link to shorten it..." autocomplete="off" />
+        <br>
+        <input asp-for="LongUrl" id="input1" class="form-control glow-on-hover" placeholder="Enter a link to shorten it..." autocomplete="off" />
+        <br>
+        <input asp-for="ShortUrl" id="input2" class="form-control glow-on-hover" placeholder="Type your 5 character alias, (optional)" autocomplete="off" />
         <button type="submit" id="button" class="btn btn-warning btn-lg btn-block">Create link &nbsp;<i class="bi bi-link-45deg"></i></button>
     </form>
-    @{
-        if (TempData["NewLink"] != null)
+        @if (TempData["NewLink"] != null)
         {
             <div id="show">
-                <p id="getLink">@TempData["NewLink"] &nbsp;&nbsp;&nbsp;</p>
+                <p id="getLink">@TempData["NewLink"]</p>&nbsp;&nbsp;&nbsp;
                 <button onclick="myFunction()" id="copyButton" class="btn btn-warning">Copy <i class="bi bi-scissors"></i></button>
             </div>
-            
         }
-    }
 </div>
